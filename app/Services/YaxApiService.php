@@ -7,13 +7,17 @@ use Illuminate\Support\Facades\Http;
 class YaxApiService
 {
     public function __construct(
-        private string $baseUrl = '',
-        private string $apiToken = ''
+        protected string $baseUrl = '',
+        protected string $apiToken = ''
     ) {
         $this->setBaseUrl($baseUrl);
         $this->setApiToken($apiToken);
     }
 
+    /**
+     * @param array $query - query parameters see: https://integrations.yaxint.com/docs/#fetching-products
+     * @return object|null - object containing products | null if error occurs
+     */
     public function getProducts(array $query = []): ?object
     {
         $query['api_token'] = $this->getApiToken();
@@ -30,7 +34,7 @@ class YaxApiService
     /**
      * @return string
      */
-    public function getBaseUrl(): string
+    protected function getBaseUrl(): string
     {
         return $this->baseUrl;
     }
@@ -38,7 +42,7 @@ class YaxApiService
     /**
      * @param string $baseUrl
      */
-    public function setBaseUrl(string $baseUrl): void
+    protected function setBaseUrl(string $baseUrl): void
     {
         if ($baseUrl === '') {
             $this->baseUrl = config('yax.api_base_url');
@@ -51,7 +55,7 @@ class YaxApiService
     /**
      * @return string
      */
-    public function getApiToken(): string
+    protected function getApiToken(): string
     {
         return $this->apiToken;
     }
@@ -59,7 +63,7 @@ class YaxApiService
     /**
      * @param string $apiToken
      */
-    public function setApiToken(string $apiToken): void
+    protected function setApiToken(string $apiToken): void
     {
         if ($apiToken === '') {
             $this->apiToken = config('yax.api_token');

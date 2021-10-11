@@ -55,10 +55,10 @@
         }).on('mouseenter', function () {
             $('.main-image').hide();
             $('.alt-image').show();
-            $('.description').show(50000);
+            $('.description').show(5000);
         }).on('mouseleave', function () {
             $('.alt-image').hide();
-            $('.description').hide(50000);
+            $('.description').hide(5000);
             $('.main-image').show();
         });
 
