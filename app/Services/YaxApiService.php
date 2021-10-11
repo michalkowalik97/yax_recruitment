@@ -16,11 +16,13 @@ class YaxApiService
 
     public function getProducts(array $query = []): ?object
     {
+        $query['api_token'] = $this->getApiToken();
         $products = Http::get($this->getBaseUrl() . 'products', $query);
 
-        if ($products->ok()){
+        if ($products->ok()) {
             return $products->object();
-        }else{
+        }
+        else {
             return null;
         }
     }
@@ -51,7 +53,7 @@ class YaxApiService
      */
     public function getApiToken(): string
     {
-        return 'api_token=' . $this->apiToken;
+        return $this->apiToken;
     }
 
     /**
