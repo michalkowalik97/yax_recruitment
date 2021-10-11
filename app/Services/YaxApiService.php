@@ -72,5 +72,4 @@ class YaxApiService
             $this->apiToken = $apiToken;
         }
     }
-
 }
